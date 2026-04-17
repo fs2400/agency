@@ -6,7 +6,7 @@
   <title>Agency</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@500;700&family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@500;700&family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
@@ -48,11 +48,7 @@
       --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       --font-editorial: 'Playfair Display', Georgia, serif;
-      --font-hand: 'Caveat', 'Playfair Display', cursive;
-      --paper-tone: #f4ecd8;
-      --paper-deep: #ebe0c5;
-      --terracotta: #c97b5a;
-      --ink: #2a2d35;
+      --paper-tone: #f8f2e4;
     }
 
     html {
@@ -1072,352 +1068,6 @@
       }
     }
 
-    /* ═══════════════════════════════════════════════════════════════════
-       Personality Additions — hand-drawn, editorial, atmospheric
-       ═══════════════════════════════════════════════════════════════════ */
-
-    /* Ambient glowing orbs behind hero content */
-    .hero-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.55;
-      pointer-events: none;
-      z-index: 0;
-      mix-blend-mode: screen;
-      animation: orb-drift 18s ease-in-out infinite alternate;
-    }
-    .hero-orb.orb-a {
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, #95D7AE 0%, transparent 70%);
-      top: 10%; left: -80px;
-    }
-    .hero-orb.orb-b {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, #c97b5a 0%, transparent 70%);
-      bottom: 5%; right: -120px;
-      animation-delay: -6s;
-      opacity: 0.28;
-    }
-    .hero-orb.orb-c {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, #7BAE7F 0%, transparent 70%);
-      top: 40%; right: 20%;
-      animation-delay: -12s;
-      opacity: 0.35;
-    }
-    @keyframes orb-drift {
-      0%   { transform: translate(0, 0) scale(1); }
-      50%  { transform: translate(40px, -30px) scale(1.08); }
-      100% { transform: translate(-20px, 40px) scale(0.95); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-orb { animation: none; }
-    }
-
-    /* Hand-drawn underline under hero tagline */
-    .hero-tagline {
-      padding-bottom: 8px;
-    }
-    .hero-tagline::after {
-      display: none; /* replace the old linear-gradient underline */
-    }
-    .hand-underline-svg {
-      position: absolute;
-      left: -6%;
-      right: -6%;
-      bottom: -14px;
-      width: 112%;
-      height: 14px;
-      overflow: visible;
-      pointer-events: none;
-    }
-    .hand-underline-svg path {
-      fill: none;
-      stroke: var(--celadon);
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: draw-underline 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.8s forwards;
-    }
-    @keyframes draw-underline {
-      to { stroke-dashoffset: 0; }
-    }
-
-    /* Rotating word in manifesto */
-    .rotating-word-wrap {
-      display: inline-block;
-      position: relative;
-      min-width: 7ch;
-      text-align: left;
-      vertical-align: baseline;
-    }
-    .rotating-word {
-      display: inline-block;
-      color: var(--terracotta);
-      font-style: italic;
-      position: absolute;
-      left: 0;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      white-space: nowrap;
-    }
-    .rotating-word.active {
-      opacity: 1;
-      transform: translateY(0);
-      position: relative;
-    }
-    .rotating-word.out {
-      opacity: 0;
-      transform: translateY(-14px);
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════
-       Manifesto / Editorial Interlude
-       ═══════════════════════════════════════════════════════════════════ */
-    .manifesto {
-      background: var(--paper-tone);
-      padding: 140px 0 160px;
-      position: relative;
-      overflow: hidden;
-    }
-    .manifesto::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 15% 20%, rgba(201, 123, 90, 0.10) 0%, transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(115, 149, 111, 0.12) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .manifesto::after {
-      /* paper grain */
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='4'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.08;
-      mix-blend-mode: multiply;
-      pointer-events: none;
-    }
-    .manifesto .container {
-      position: relative;
-      z-index: 2;
-    }
-    .manifesto-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .manifesto-eyebrow::before {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--terracotta);
-    }
-    .manifesto-quote {
-      font-family: var(--font-editorial);
-      font-weight: 500;
-      font-size: clamp(2rem, 4.5vw, 4rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      max-width: 1000px;
-      margin-bottom: 48px;
-    }
-    .manifesto-quote em {
-      font-style: italic;
-      color: var(--terracotta);
-      font-weight: 600;
-    }
-    .manifesto-quote .big-quote {
-      font-family: var(--font-editorial);
-      font-style: italic;
-      font-size: 1.4em;
-      color: var(--terracotta);
-      line-height: 0;
-      vertical-align: -0.4em;
-      margin-right: 0.05em;
-      opacity: 0.65;
-    }
-    .manifesto-byline {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: end;
-      max-width: 1000px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(42, 45, 53, 0.15);
-    }
-    .manifesto-sub {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      line-height: 1.65;
-      color: rgba(42, 45, 53, 0.7);
-      max-width: 560px;
-    }
-    .manifesto-signature {
-      font-family: var(--font-hand);
-      font-size: 2rem;
-      color: var(--terracotta);
-      line-height: 1;
-      transform: rotate(-3deg);
-      white-space: nowrap;
-    }
-    .manifesto-signature small {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(42, 45, 53, 0.55);
-      transform: rotate(3deg);
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    @media (max-width: 768px) {
-      .manifesto { padding: 90px 0 100px; }
-      .manifesto-byline {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .manifesto-signature {
-        font-size: 1.7rem;
-        transform: rotate(-2deg);
-      }
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════
-       Marginalia — italic reading notes in POV section
-       ═══════════════════════════════════════════════════════════════════ */
-    .pov-block {
-      position: relative;
-    }
-    .marginalia {
-      position: absolute;
-      top: -8px;
-      left: calc(50% - 540px);
-      width: 180px;
-      font-family: var(--font-hand);
-      font-size: 1.35rem;
-      line-height: 1.2;
-      color: var(--terracotta);
-      transform: rotate(-4deg);
-      opacity: 0;
-      transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
-    }
-    .pov-block.visible .marginalia {
-      opacity: 0.85;
-      transform: rotate(-4deg) translateY(0);
-    }
-    .marginalia::after {
-      /* hand-drawn arrow pointing right */
-      content: '';
-      position: absolute;
-      right: -30px;
-      top: 50%;
-      width: 60px;
-      height: 30px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Cpath d='M2 15 Q 20 5, 45 14 M 38 8 L 48 14 L 40 22' stroke='%23c97b5a' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-size: contain;
-      opacity: 0.75;
-    }
-    .marginalia.right {
-      left: auto;
-      right: calc(50% - 540px);
-      transform: rotate(3deg);
-    }
-    .marginalia.right::after {
-      right: auto;
-      left: -30px;
-      transform: scaleX(-1);
-    }
-    .pov-block.visible .marginalia.right {
-      transform: rotate(3deg) translateY(0);
-    }
-    @media (max-width: 1200px) {
-      .marginalia { display: none; }
-    }
-
-    /* Organic section divider (curved SVG) */
-    .section-divider {
-      display: block;
-      width: 100%;
-      height: 48px;
-      margin: 0;
-      line-height: 0;
-    }
-    .section-divider svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* CTA signature / letter feel */
-    .cta {
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-signature {
-      margin-top: 48px;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-    }
-    .cta-signature-line {
-      font-family: var(--font-hand);
-      font-size: 2.2rem;
-      color: var(--celadon);
-      line-height: 1;
-      transform: rotate(-3deg);
-    }
-    .cta-signature-sub {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      margin-top: 10px;
-      font-weight: 600;
-    }
-    .cta-letter-wrap {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
-
-    /* Soft decorative squiggle used as section accent */
-    .squiggle {
-      display: block;
-      margin: 0 auto 20px;
-      width: 60px;
-      height: 14px;
-    }
-    .squiggle path {
-      stroke: var(--terracotta);
-      stroke-width: 2;
-      fill: none;
-      stroke-linecap: round;
-    }
-
-    /* Increase ambient grain slightly for warmth */
-    body::before {
-      opacity: 0.045;
-    }
-
   </style>
 </head>
 
@@ -1442,7 +1092,6 @@
   <div class="waypoint-dots">
     <div class="waypoint-dot active" data-section="hero"></div>
     <div class="waypoint-dot" data-section="pov"></div>
-    <div class="waypoint-dot" data-section="manifesto"></div>
     <div class="waypoint-dot" data-section="services"></div>
     <div class="waypoint-dot" data-section="how-it-works"></div>
     <div class="waypoint-dot" data-section="outcomes"></div>
@@ -1455,16 +1104,13 @@
       <div class="hero-spline-fallback"></div>
       <spline-viewer url="https://prod.spline.design/CL3GuOJE86k-IgGj/scene.splinecode" loading-anim-type="none" events-target="none"></spline-viewer>
     </div>
-    <div class="hero-orb orb-a" aria-hidden="true"></div>
-    <div class="hero-orb orb-b" aria-hidden="true"></div>
-    <div class="hero-orb orb-c" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-content">
         <div class="hero-statement-box">
           <h1>AI is not just changing how fast we can work.<br><em>It&rsquo;s changing what &lsquo;work&rsquo; is.</em></h1>
           <p class="hero-followup">Most organizations are using AI to do what they already do, faster. While they focus on being more efficient, they&rsquo;re missing the opportunity to become genuinely more adaptive.</p>
         </div>
-        <p class="hero-tagline">Agency builds organizations that adapt.<svg class="hand-underline-svg" viewBox="0 0 400 14" preserveAspectRatio="none" aria-hidden="true"><path d="M4 9 Q 60 2, 120 8 T 240 7 Q 300 3, 396 8"/></svg></p>
+        <p class="hero-tagline">Agency builds organizations that adapt.</p>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">Schedule a Time With Us &rarr;</a>
         </div>
@@ -1508,44 +1154,22 @@
       <div class="pov-eyebrow">Our Point of View</div>
 
       <div class="pov-block reveal">
-        <span class="marginalia">the part everyone skips</span>
         <h3>The real challenge with AI isn't technological&mdash;it's organizational.</h3>
         <p>AI can already do the analytical thinking today's organizations run on &mdash; only faster and cheaper. Which raises the real question: what is the role of your people once that thinking is automated? In that question lies the opportunity.</p>
       </div>
 
       <div class="pov-block reveal">
-        <span class="marginalia right">this is the shift</span>
         <h3>The opportunity: unleash your people to explore the future, while AI runs the present.</h3>
         <p>Once every organization can operate with AI, operational efficiency stops being a differentiator. The only thing that separates businesses will be their ability to adapt &mdash; to question what's next, and move toward it.</p>
       </div>
 
       <div class="pov-block reveal">
-        <span class="marginalia">read this twice</span>
         <h3>AI makes adaptability table stakes&mdash;and human agency is what delivers it.</h3>
         <p>The organizations that win won't be the ones that deploy AI the fastest. They'll be the ones that break what constrains human agency, and build what expands it.</p>
       </div>
 
       <div class="pov-cta-wrap reveal">
         <a href="pov.html" class="pov-cta">Our Full Point of View &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- MANIFESTO / EDITORIAL INTERLUDE -->
-  <section class="manifesto" id="manifesto">
-    <div class="container">
-      <div class="reveal">
-        <div class="manifesto-eyebrow">A note from us</div>
-        <p class="manifesto-quote">
-          <span class="big-quote">&ldquo;</span>The next decade won&rsquo;t belong to the companies that automate fastest. It&rsquo;ll belong to the ones whose people <em>still know how to <span class="rotating-word-wrap"><span class="rotating-word active">wonder</span><span class="rotating-word">question</span><span class="rotating-word">imagine</span><span class="rotating-word">adapt</span></span></em> &mdash; and have the organization to back it.
-        </p>
-        <div class="manifesto-byline">
-          <p class="manifesto-sub">We started Agency because we kept watching smart teams lose the plot the moment AI showed up. The tools got faster; the thinking got flatter. This is our attempt to fix that.</p>
-          <div class="manifesto-signature">
-            &mdash; Fred &amp; Drew
-            <small>Co-founders, Agency</small>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1679,15 +1303,8 @@
   <section class="cta dark-section" id="contact">
     <div class="container">
       <div class="reveal" style="text-align: center;">
-        <svg class="squiggle" viewBox="0 0 60 14" aria-hidden="true"><path d="M2 7 Q 10 1, 18 7 T 34 7 T 50 7 T 58 7"/></svg>
         <h2>Ready to build an organization that adapts?</h2>
-        <div class="cta-letter-wrap">
-          <a href="mailto:fred@questionwithagency.com" class="btn btn-primary" style="margin-top: 24px;">Start a Conversation &rarr;</a>
-          <div class="cta-signature">
-            <span class="cta-signature-line">— let's talk.</span>
-            <span class="cta-signature-sub">fred@questionwithagency.com</span>
-          </div>
-        </div>
+        <a href="mailto:fred@questionwithagency.com" class="btn btn-primary" style="margin-top: 24px;">Start a Conversation &rarr;</a>
       </div>
       <div class="cta-footer">
         <p>&copy; 2026 Agency</p>
@@ -1757,22 +1374,6 @@
     document.querySelectorAll('.reveal').forEach(el => {
       revealObserver.observe(el);
     });
-
-    // Rotating word in manifesto
-    (function() {
-      const words = document.querySelectorAll('.rotating-word');
-      if (words.length <= 1) return;
-      let idx = 0;
-      setInterval(() => {
-        const current = words[idx];
-        const next = words[(idx + 1) % words.length];
-        current.classList.remove('active');
-        current.classList.add('out');
-        setTimeout(() => current.classList.remove('out'), 500);
-        next.classList.add('active');
-        idx = (idx + 1) % words.length;
-      }, 2200);
-    })();
 
     // Timeline scroll animation — fill line + activate phases
     (function() {
